@@ -126,7 +126,14 @@ $(HOME)/pelias.json:
 	mv $(datadir)/polylines/road_network $(datadir)/polylines/road_network.polylines
 	touch .download_polylines
 
+.create_index:
+	# Note: Install plugin before starting elasticsearch
+	$(peldir)/elasticsearch/bin/plugin install analysis-icu
+	# Now elasticsearch must be running
+	cd schema; node scripts/create_index.js && cd .. && touch .create_index
+
 .import_openstreetmap:
+	# Note, elasticsearch must be running already
 	cd openstreetmap; npm start && cd .. && touch .import_openstreetmap
 
 .envrc:
