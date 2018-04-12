@@ -7,15 +7,13 @@ node6_latest := $(shell curl -s https://nodejs.org/dist/latest-v6.x/ | grep -P '
 direnv_latest := $(shell curl -s https://api.github.com/repos/direnv/direnv/releases/latest | grep 'browser_download_url' | grep 'linux-amd64' | cut -d '"' -f 4)
 datadir := /disk/agebulk1/medicare.work/doyle-DUA18266/barronk/raw/pelias
 
-
-all: pelias
-	@echo "all"
-
 PELIAS_DEPS := .envrc $(peldir)/bin/node
 PELIAS_DEPS += $(peldir)/elasticsearch/bin/elasticsearch
 PELIAS_DEPS += api schema whosonfirst openaddresses openstreetmap polylines
+PELIAS_DEPS += $(HOME)/pelias.json
 
 pelias: $(PELIAS_DEPS)
+	@ echo "Done"
 
 api:
 	git clone git@github.com:pelias/api.git
@@ -84,8 +82,8 @@ polylines:
 	npm install; \
 	cd ..;
 
-
-data_download: whos_on_first_download
+$(HOME)/pelias.json:
+	bash ./create_pelias_config.sh -d $(datadir)
 
 
 .envrc:
