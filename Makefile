@@ -106,7 +106,9 @@ $(HOME)/pelias.json:
 	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_south.zip -P $(datadir)/openaddresses/
 	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_west.zip -P $(datadir)/openaddresses/
 	cd $datadir/openaddresses; \
-	unzip *.zip
+	unzip -n "*.zip"; \
+	rm -f *.zip
+	python ./openaddresses_update.py
 	touch .download_openaddresses
 
 .download_openstreetmap:
