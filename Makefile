@@ -11,17 +11,16 @@ PELIAS_DEPS := .envrc $(peldir)/bin/node
 PELIAS_DEPS += $(peldir)/elasticsearch/bin/elasticsearch
 PELIAS_DEPS += api schema whosonfirst openaddresses openstreetmap polylines
 PELIAS_DEPS += $(HOME)/pelias.json
+PELIAS_DEPS += .download_whosonfirst
+PELIAS_DEPS += .download_openaddresses
+PELIAS_DEPS += .download_openstreetmap
+PELIAS_DEPS += .download_polylines
+
+all: .pelias_finished_install
 
 .pelias_finished_install: $(PELIAS_DEPS)
 	touch .pelias_finished_install
 	@ echo "Done"
-
-DOWNLOAD_DEPS := .pelias_finished_install
-download:
-	make .download_whosonfirst
-	make .download_openaddresses
-	make .download_openstreetmap
-	make .download_polylines
 
 api:
 	git clone git@github.com:pelias/api.git
