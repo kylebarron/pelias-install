@@ -95,7 +95,7 @@ $(HOME)/pelias.json:
 	bash ./create_pelias_config.sh -d $(datadir)
 
 
-.download_whosonfirst: $(HOME)/pelias.json
+.download_whosonfirst:
 	cd whosonfirst; \
 	npm run download
 	touch .download_whosonfirst
