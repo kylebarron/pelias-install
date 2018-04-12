@@ -9,7 +9,7 @@ datadir := /disk/agebulk1/medicare.work/doyle-DUA18266/barronk/raw/pelias
 
 PELIAS_DEPS := .envrc $(peldir)/bin/node
 PELIAS_DEPS += $(peldir)/elasticsearch/bin/elasticsearch
-PELIAS_DEPS += api schema whosonfirst openaddresses openstreetmap polylines
+PELIAS_DEPS += api schema whosonfirst openaddresses openstreetmap polylines interpolation
 PELIAS_DEPS += $(HOME)/pelias.json
 PELIAS_DEPS += .download_whosonfirst
 PELIAS_DEPS += .download_openaddresses
@@ -89,6 +89,44 @@ polylines:
 	git checkout production; \
 	npm install; \
 	cd ..;
+
+interpolation: pbf2json
+	git clone git@github.com:pelias/interpolation.git
+	cd interpolation; \
+	git checkout production; \
+	npm install; \
+	echo 'export CC="gcc"' > .envrc; \
+	echo 'export CXX="g++"' >> .envrc; \
+	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
+	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	cd node_modules/node-postal; \
+	export CC="gcc"; \
+	export CXX="g++"; \
+	mkdir deps; \
+	git clone git@github.com:openvenues/libpostal.git; \
+	cd libpostal; \
+	./bootstrap.sh; \
+	autoreconf -i; \
+	cat m4/libtool.m4 >> aclocal.m4; \
+	cat m4/ltoptions.m4 >> aclocal.m4; \
+	cat m4/ltversion.m4 >> aclocal.m4; \
+	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
+	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
+	make -j4; \
+	make install; \
+	cd ..; \
+	export CXXFLAGS=-I$$(pwd)/deps/include; \
+	export LDFLAGS=-L$$(pwd)/deps/lib; \
+	npm install; \
+	cd ../../; \
+	cd ..;
+
+
+pbf2json:
+	git clone git@github.com:pelias/pbf2json.git
+
 
 $(HOME)/pelias.json:
 	bash ./create_pelias_config.sh -d $(datadir)
