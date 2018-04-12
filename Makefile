@@ -12,8 +12,15 @@ PELIAS_DEPS += $(peldir)/elasticsearch/bin/elasticsearch
 PELIAS_DEPS += api schema whosonfirst openaddresses openstreetmap polylines
 PELIAS_DEPS += $(HOME)/pelias.json
 
-pelias: $(PELIAS_DEPS)
+.pelias_finished_install: $(PELIAS_DEPS)
+	touch .pelias_finished_install
 	@ echo "Done"
+
+DOWNLOAD_DEPS := .pelias_finished_install
+download:
+	make .download_whosonfirst
+	make .download_openaddresses
+	make .download_openstreetmap
 
 api:
 	git clone git@github.com:pelias/api.git
@@ -85,6 +92,30 @@ polylines:
 
 $(HOME)/pelias.json:
 	bash ./create_pelias_config.sh -d $(datadir)
+
+
+.download_whosonfirst: $(HOME)/pelias.json
+	cd whosonfirst; \
+	npm run download
+	touch .download_whosonfirst
+
+.download_openaddresses:
+	mkdir -p $(datadir)/openaddresses/
+	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_northeast.zip -P $(datadir)/openaddresses/
+	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_midwest.zip -P $(datadir)/openaddresses/
+	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_south.zip -P $(datadir)/openaddresses/
+	wget https://s3.amazonaws.com/data.openaddresses.io/openaddr-collected-us_west.zip -P $(datadir)/openaddresses/
+	cd $datadir/openaddresses; \
+	unzip *.zip
+	touch .download_openaddresses
+
+.download_openstreetmap:
+	mkdir -p $(datadir)/openstreetmap/
+	wget https://download.geofabrik.de/north-america/us-midwest-latest.osm.pbf -P $(datadir)/openstreetmap
+	wget https://download.geofabrik.de/north-america/us-northeast-latest.osm.pbf -P $(datadir)/openstreetmap
+	wget https://download.geofabrik.de/north-america/us-south-latest.osm.pbf -P $(datadir)/openstreetmap
+	wget https://download.geofabrik.de/north-america/us-west-latest.osm.pbf -P $(datadir)/openstreetmap
+	touch .download_openstreetmap
 
 
 .envrc:
