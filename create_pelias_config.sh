@@ -27,8 +27,8 @@ echo "{}" \
   | jq '.imports.openstreetmap.import[1] = "us-midwest-latest.osm.pbf"' \
   | jq '.imports.openstreetmap.import[2] = "us-south-latest.osm.pbf"' \
   | jq '.imports.openstreetmap.import[3] = "us-west-latest.osm.pbf"' \
-  | jq ".imports.polyline.datapath = \"$datadir/polyline\"" \
-  | jq '.imports.polyline.files[0] = "us-midwest-latest.polylines"' \
+  | jq ".imports.polyline.datapath = \"$datadir/polylines\"" \
+  | jq '.imports.polyline.files[0] = "road_network.polylines"' \
   | jq ".imports.whosonfirst.datapath = \"$datadir/whosonfirst\"" \
   | jq '.imports.whosonfirst.importPostalcodes = true' \
   | jq '.imports.whosonfirst.importPlace = 85633793' \

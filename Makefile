@@ -21,6 +21,7 @@ download:
 	make .download_whosonfirst
 	make .download_openaddresses
 	make .download_openstreetmap
+	make .download_polylines
 
 api:
 	git clone git@github.com:pelias/api.git
@@ -119,6 +120,12 @@ $(HOME)/pelias.json:
 	wget https://download.geofabrik.de/north-america/us-west-latest.osm.pbf -P $(datadir)/openstreetmap
 	touch .download_openstreetmap
 
+.download_polylines:
+	mkdir -p $(datadir)/polylines/
+	wget http://pelias-data.nextzen.org.s3.amazonaws.com/poylines/road_network.gz -P $(datadir)/polylines/
+	gunzip $(datadir)/polylines/road_network.gz
+	mv $(datadir)/polylines/road_network $(datadir)/polylines/road_network.polylines
+	touch .download_polylines
 
 .envrc:
 	mkdir -p $(peldir)/bin
