@@ -1,0 +1,13 @@
+.download_whosonfirst
+.download_openaddresses
+.download_openstreetmap
+.download_polylines
+.envrc
+.lastlogin
+.pelias_finished_install
+api/
+openaddresses/
+openstreetmap/
+polylines/
+schema/
+whosonfirst/
