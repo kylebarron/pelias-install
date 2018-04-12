@@ -126,6 +126,9 @@ $(HOME)/pelias.json:
 	mv $(datadir)/polylines/road_network $(datadir)/polylines/road_network.polylines
 	touch .download_polylines
 
+.import_openstreetmap:
+	cd openstreetmap; npm start && cd .. && touch .import_openstreetmap
+
 .envrc:
 	mkdir -p $(peldir)/bin
 	wget $(direnv_latest) -O $(peldir)/bin/direnv
