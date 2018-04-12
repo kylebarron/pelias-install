@@ -89,7 +89,7 @@ $(HOME)/pelias.json:
 .envrc:
 	mkdir -p $(peldir)/bin
 	wget $(direnv_latest) -O $(peldir)/bin/direnv
-	echo "export PATH=$(peldir)/bin:$$PATH" > .envrc
+	echo 'export PATH=$(peldir)/bin:$$PATH' > .envrc
 	direnv allow
 
 
@@ -123,7 +123,7 @@ $(peldir)/elasticsearch/bin/elasticsearch:
 	wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.6/elasticsearch-2.4.6.tar.gz -P /tmp/
 	mkdir -p $(peldir)/elasticsearch
 	tar -xzvf /tmp/elasticsearch-2.4.6.tar.gz -C $(peldir)/elasticsearch --strip-components 1
-	echo "export PATH=$(peldir)/elasticsearch/bin:$$PATH" >> .envrc
+	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc
 	direnv allow
 
 
