@@ -26,7 +26,8 @@ echo "{}" \
   | jq ".imports.polyline.datapath = \"$datadir/polyline\"" \
   | jq '.imports.polyline.files[0] = "us-midwest-latest.polylines"' \
   | jq ".imports.whosonfirst.datapath = \"$datadir/whosonfirst\"" \
-  | jq ".imports.whosonfirst.importPostalcodes = true" \
+  | jq '.imports.whosonfirst.importPostalcodes = true' \
+  | jq '.imports.whosonfirst.importPlace = 85633793' \
   | jq ".imports.whosonfirst.importVenues = false" > $HOME/pelias.json
 
 
