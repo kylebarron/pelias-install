@@ -39,6 +39,7 @@ api:
 	cat m4/ltversion.m4 >> aclocal.m4; \
 	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
 	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
+	make -j4; \
 	make install; \
 	cd ..; \
 	export CXXFLAGS=-I$$(pwd)/deps/include; \
