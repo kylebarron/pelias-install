@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
+# Program: create_pelias_config.sh
+# Author:  Kyle Barron <barronk@mit.edu>
+# Purpose: Create ~/pelias.json
+# Outputs: ~/pelias.json
 
 while getopts ":d:p:" opt; do
   case $opt in
@@ -29,14 +33,3 @@ echo "{}" \
   | jq '.imports.whosonfirst.importPostalcodes = true' \
   | jq '.imports.whosonfirst.importPlace = 85633793' \
   | jq ".imports.whosonfirst.importVenues = false" > $HOME/pelias.json
-
-
-
-
-
-
-
-
-
-
-
