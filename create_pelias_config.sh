@@ -23,10 +23,10 @@ echo "{}" \
   | jq '.imports.adminLookup.enabled = true' \
   | jq ".imports.openaddresses.datapath = \"$datadir/openaddresses\"" \
   | jq ".imports.openstreetmap.datapath = \"$datadir/openstreetmap\"" \
-  | jq '.imports.openstreetmap.import[0] = "us-northeast-latest.osm.pbf"' \
-  | jq '.imports.openstreetmap.import[1] = "us-midwest-latest.osm.pbf"' \
-  | jq '.imports.openstreetmap.import[2] = "us-south-latest.osm.pbf"' \
-  | jq '.imports.openstreetmap.import[3] = "us-west-latest.osm.pbf"' \
+  | jq '.imports.openstreetmap.import[0].filename = "us-northeast-latest.osm.pbf"' \
+  | jq '.imports.openstreetmap.import[1].filename = "us-midwest-latest.osm.pbf"' \
+  | jq '.imports.openstreetmap.import[2].filename = "us-south-latest.osm.pbf"' \
+  | jq '.imports.openstreetmap.import[3].filename = "us-west-latest.osm.pbf"' \
   | jq ".imports.polyline.datapath = \"$datadir/polylines\"" \
   | jq '.imports.polyline.files[0] = "road_network.polylines"' \
   | jq ".imports.whosonfirst.datapath = \"$datadir/whosonfirst\"" \
