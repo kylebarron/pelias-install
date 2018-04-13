@@ -180,6 +180,9 @@ $(HOME)/pelias.json:
 	# Note, elasticsearch must be running already
 	cd openstreetmap; npm start && cd .. && touch .import_openstreetmap
 
+.import_openaddresses:
+	cd openaddresses; npm start && cd .. && touch .import_openstreetmap
+
 .envrc:
 	mkdir -p $(peldir)/bin
 	wget $(direnv_latest) -O $(peldir)/bin/direnv
