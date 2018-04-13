@@ -183,6 +183,12 @@ $(HOME)/pelias.json:
 .import_openaddresses:
 	cd openaddresses; npm start && cd .. && touch .import_openaddresses
 
+.import_polylines:
+	cd polylines; npm start && cd .. && touch .import_polylines
+	
+.import_whosonfirst:
+	cd whosonfirst; npm start && cd .. && touch .import_whosonfirst
+
 .envrc:
 	mkdir -p $(peldir)/bin
 	wget $(direnv_latest) -O $(peldir)/bin/direnv
