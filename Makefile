@@ -32,6 +32,9 @@ api:
 	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
 	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
+	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
 	direnv allow; \
 	cd node_modules/node-postal; \
 	export CC="gcc"; \
@@ -100,6 +103,9 @@ interpolation: pbf2json
 	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
 	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
+	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
 	direnv allow; \
 	cd node_modules/node-postal; \
 	export CC="gcc"; \
