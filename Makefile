@@ -181,7 +181,7 @@ $(HOME)/pelias.json:
 	cd openstreetmap; npm start && cd .. && touch .import_openstreetmap
 
 .import_openaddresses:
-	cd openaddresses; npm start && cd .. && touch .import_openstreetmap
+	cd openaddresses; npm start && cd .. && touch .import_openaddresses
 
 .envrc:
 	mkdir -p $(peldir)/bin
