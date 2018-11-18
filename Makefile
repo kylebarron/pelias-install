@@ -195,19 +195,19 @@ $(peldir)/bin/node:
 	tar -xzvf $(HOME)/tmp/node-v10.tar.gz -C $(HOME)/tmp/node/ --strip-components 1
 
 	mkdir -p $(peldir)/bin/
-	mv $(HOME)/tmp/node/bin/* $(peldir)/bin/
+	rsync $(HOME)/tmp/node/bin/ $(peldir)/bin/
 
 	mkdir -p $(peldir)/include/
-	mv $(HOME)/tmp/node/include/* $(peldir)/include/
+	rsync $(HOME)/tmp/node/include/ $(peldir)/include/
 
 	mkdir -p $(peldir)/lib/
-	mv $(HOME)/tmp/node/lib/* $(peldir)/lib/
+	rsync $(HOME)/tmp/node/lib/ $(peldir)/lib/
 
 	mkdir -p $(peldir)/share/doc/
-	mv $(HOME)/tmp/node/share/doc/* $(peldir)/share/doc/
+	rsync $(HOME)/tmp/node/share/doc/ $(peldir)/share/doc/
 
 	mkdir -p $(peldir)/share/man/man1/
-	mv $(HOME)/tmp/node/share/man/man1/* $(peldir)/share/man/man1/
+	rsync $(HOME)/tmp/node/share/man/man1/ $(peldir)/share/man/man1/
 
 	npm config set prefix $(peldir)
 
