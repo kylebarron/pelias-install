@@ -24,6 +24,7 @@ all: .pelias_finished_install
 	@ echo "Done"
 
 api:
+	rm -rf $(peldir)/api
 	git clone git@github.com:pelias/api.git $(peldir)/api
 	cd $(peldir)/api; \
 	git checkout production; \
@@ -55,6 +56,7 @@ api:
 	cd ..;
 
 schema:
+	rm -rf $(peldir)/schema
 	git clone git@github.com:pelias/schema.git $(peldir)/schema
 	cd $(peldir)/schema; \
 	git checkout production; \
@@ -62,6 +64,7 @@ schema:
 	cd ..;
 
 whosonfirst:
+	rm -rf $(peldir)/whosonfirst
 	git clone git@github.com:pelias/whosonfirst.git $(peldir)/whosonfirst
 	cd $(peldir)/whosonfirst; \
 	git checkout production; \
@@ -69,6 +72,7 @@ whosonfirst:
 	cd ..;
 
 openaddresses:
+	rm -rf $(peldir)/openaddresses
 	git clone git@github.com:pelias/openaddresses.git $(peldir)/openaddresses
 	cd $(peldir)/openaddresses; \
 	git checkout production; \
@@ -76,6 +80,7 @@ openaddresses:
 	cd ..;
 
 openstreetmap:
+	rm -rf $(peldir)/openstreetmap
 	git clone git@github.com:pelias/openstreetmap.git $(peldir)/openstreetmap
 	cd $(peldir)/openstreetmap; \
 	git checkout production; \
@@ -83,6 +88,7 @@ openstreetmap:
 	cd ..;
 
 polylines:
+	rm -rf $(peldir)/polylines
 	git clone git@github.com:pelias/polylines.git $(peldir)/polylines
 	cd $(peldir)/polylines; \
 	git checkout production; \
@@ -90,6 +96,7 @@ polylines:
 	cd ..;
 
 interpolation: pbf2json
+	rm -rf $(peldir)/interpolation
 	git clone git@github.com:pelias/interpolation.git $(peldir)/interpolation
 	cd $(peldir)/interpolation; \
 	git checkout production; \
@@ -122,6 +129,7 @@ interpolation: pbf2json
 
 
 pbf2json:
+	rm -rf $(peldir)/pbf2json
 	git clone git@github.com:pelias/pbf2json.git $(peldir)/pbf2json
 
 
