@@ -189,10 +189,10 @@ $(HOME)/pelias.json:
 
 $(peldir)/bin/node:
 	echo $(node10_latest)
-	wget https://nodejs.org/dist/latest-v10.x/$(node10_latest) -O /tmp/node-v6.tar.gz
+	wget https://nodejs.org/dist/latest-v10.x/$(node10_latest) -O /tmp/node-v10.tar.gz
 
 	mkdir -p /tmp/node
-	tar -xzvf /tmp/node-v6.tar.gz -C /tmp/node/ --strip-components 1
+	tar -xzvf /tmp/node-v10.tar.gz -C /tmp/node/ --strip-components 1
 
 	mkdir -p $(peldir)/bin/
 	mv /tmp/node/bin/* $(peldir)/bin/
