@@ -45,10 +45,6 @@ api:
 	cd libpostal; \
 	./bootstrap.sh; \
 	autoreconf -i; \
-	cat m4/libtool.m4 >> aclocal.m4; \
-	cat m4/ltoptions.m4 >> aclocal.m4; \
-	cat m4/ltversion.m4 >> aclocal.m4; \
-	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
 	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
 	make -j4; \
 	make install; \
@@ -116,10 +112,6 @@ interpolation: pbf2json
 	cd libpostal; \
 	./bootstrap.sh; \
 	autoreconf -i; \
-	cat m4/libtool.m4 >> aclocal.m4; \
-	cat m4/ltoptions.m4 >> aclocal.m4; \
-	cat m4/ltversion.m4 >> aclocal.m4; \
-	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
 	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
 	make -j4; \
 	make install; \
