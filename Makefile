@@ -189,34 +189,34 @@ $(HOME)/pelias.json:
 
 $(peldir)/bin/node:
 	echo $(node10_latest)
-	wget https://nodejs.org/dist/latest-v10.x/$(node10_latest) -O /tmp/node-v10.tar.gz
+	wget https://nodejs.org/dist/latest-v10.x/$(node10_latest) -O $(HOME)/tmp/node-v10.tar.gz
 
-	mkdir -p /tmp/node
-	tar -xzvf /tmp/node-v10.tar.gz -C /tmp/node/ --strip-components 1
+	mkdir -p $(HOME)/tmp/node
+	tar -xzvf $(HOME)/tmp/node-v10.tar.gz -C $(HOME)/tmp/node/ --strip-components 1
 
 	mkdir -p $(peldir)/bin/
-	mv /tmp/node/bin/* $(peldir)/bin/
+	mv $(HOME)/tmp/node/bin/* $(peldir)/bin/
 
 	mkdir -p $(peldir)/include/
-	mv /tmp/node/include/* $(peldir)/include/
+	mv $(HOME)/tmp/node/include/* $(peldir)/include/
 
 	mkdir -p $(peldir)/lib/
-	mv /tmp/node/lib/* $(peldir)/lib/
+	mv $(HOME)/tmp/node/lib/* $(peldir)/lib/
 
 	mkdir -p $(peldir)/share/doc/
-	mv /tmp/node/share/doc/* $(peldir)/share/doc/
+	mv $(HOME)/tmp/node/share/doc/* $(peldir)/share/doc/
 
 	mkdir -p $(peldir)/share/man/man1/
-	mv /tmp/node/share/man/man1/* $(peldir)/share/man/man1/
+	mv $(HOME)/tmp/node/share/man/man1/* $(peldir)/share/man/man1/
 
 	npm config set prefix $(peldir)
 
 
 
 $(peldir)/elasticsearch/bin/elasticsearch:
-	wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.6/elasticsearch-2.4.6.tar.gz -P /tmp/
+	wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.6/elasticsearch-2.4.6.tar.gz -P $(HOME)/tmp/
 	mkdir -p $(peldir)/elasticsearch
-	tar -xzvf /tmp/elasticsearch-2.4.6.tar.gz -C $(peldir)/elasticsearch --strip-components 1
+	tar -xzvf $(HOME)/tmp/elasticsearch-2.4.6.tar.gz -C $(peldir)/elasticsearch --strip-components 1
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc
 	direnv allow
