@@ -44,7 +44,6 @@ api:
 	git clone git@github.com:openvenues/libpostal.git; \
 	cd libpostal; \
 	./bootstrap.sh; \
-	autoreconf -i; \
 	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
 	make -j4; \
 	make install; \
@@ -111,7 +110,6 @@ interpolation: pbf2json
 	git clone git@github.com:openvenues/libpostal.git; \
 	cd libpostal; \
 	./bootstrap.sh; \
-	autoreconf -i; \
 	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
 	make -j4; \
 	make install; \
