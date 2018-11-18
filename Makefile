@@ -24,8 +24,8 @@ all: .pelias_finished_install
 	@ echo "Done"
 
 api:
-	git clone git@github.com:pelias/api.git
-	cd api; \
+	git clone git@github.com:pelias/api.git $(peldir)/api
+	cd $(peldir)/api; \
 	git checkout production; \
 	npm install; \
 	echo 'export CC="gcc"' > .envrc; \
@@ -55,43 +55,43 @@ api:
 	cd ..;
 
 schema:
-	git clone git@github.com:pelias/schema.git
-	cd schema; \
+	git clone git@github.com:pelias/schema.git $(peldir)/schema
+	cd $(peldir)/schema; \
 	git checkout production; \
 	npm install; \
 	cd ..;
 
 whosonfirst:
-	git clone git@github.com:pelias/whosonfirst.git
-	cd whosonfirst; \
+	git clone git@github.com:pelias/whosonfirst.git $(peldir)/whosonfirst
+	cd $(peldir)/whosonfirst; \
 	git checkout production; \
 	npm install; \
 	cd ..;
 
 openaddresses:
-	git clone git@github.com:pelias/openaddresses.git
-	cd openaddresses; \
+	git clone git@github.com:pelias/openaddresses.git $(peldir)/openaddresses
+	cd $(peldir)/openaddresses; \
 	git checkout production; \
 	npm install; \
 	cd ..;
 
 openstreetmap:
-	git clone git@github.com:pelias/openstreetmap.git
-	cd openstreetmap; \
+	git clone git@github.com:pelias/openstreetmap.git $(peldir)/openstreetmap
+	cd $(peldir)/openstreetmap; \
 	git checkout production; \
 	npm install; \
 	cd ..;
 
 polylines:
-	git clone git@github.com:pelias/polylines.git
-	cd polylines; \
+	git clone git@github.com:pelias/polylines.git $(peldir)/polylines
+	cd $(peldir)/polylines; \
 	git checkout production; \
 	npm install; \
 	cd ..;
 
 interpolation: pbf2json
-	git clone git@github.com:pelias/interpolation.git
-	cd interpolation; \
+	git clone git@github.com:pelias/interpolation.git $(peldir)/interpolation
+	cd $(peldir)/interpolation; \
 	git checkout production; \
 	npm install; \
 	echo 'export CC="gcc"' > .envrc; \
@@ -122,7 +122,7 @@ interpolation: pbf2json
 
 
 pbf2json:
-	git clone git@github.com:pelias/pbf2json.git
+	git clone git@github.com:pelias/pbf2json.git $(peldir)/pbf2json
 
 
 $(HOME)/pelias.json:
