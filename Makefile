@@ -3,7 +3,7 @@
 
 SHELL := /bin/bash
 peldir := ${HOME}/local/pelias
-node6_latest := $(shell curl -s https://nodejs.org/dist/latest-v6.x/ | grep -P 'linux-x64\.tar\.gz' | sed -n 1p | cut -d '"' -f 2)
+node10_latest := $(shell curl -s https://nodejs.org/dist/latest-v10.x/ | grep -P 'linux-x64\.tar\.gz' | sed -n 1p | cut -d '"' -f 2)
 direnv_latest := $(shell curl -s https://api.github.com/repos/direnv/direnv/releases/latest | grep 'browser_download_url' | grep 'linux-amd64' | cut -d '"' -f 4)
 datadir := /disk/agebulk1/medicare.work/doyle-DUA18266/barronk/raw/pelias
 
@@ -185,7 +185,7 @@ $(HOME)/pelias.json:
 
 .import_polylines:
 	cd polylines; npm start && cd .. && touch .import_polylines
-	
+
 .import_whosonfirst:
 	cd whosonfirst; npm start && cd .. && touch .import_whosonfirst
 
@@ -197,27 +197,27 @@ $(HOME)/pelias.json:
 
 
 $(peldir)/bin/node:
-	echo $(node6_latest)
-	wget https://nodejs.org/dist/latest-v6.x/$(node6_latest) -O /tmp/node-v6.tar.gz
-	
+	echo $(node10_latest)
+	wget https://nodejs.org/dist/latest-v6.x/$(node10_latest) -O /tmp/node-v6.tar.gz
+
 	mkdir -p /tmp/node
 	tar -xzvf /tmp/node-v6.tar.gz -C /tmp/node/ --strip-components 1
-	
+
 	mkdir -p $(peldir)/bin/
 	mv /tmp/node/bin/* $(peldir)/bin/
-	
+
 	mkdir -p $(peldir)/include/
 	mv /tmp/node/include/* $(peldir)/include/
-	
+
 	mkdir -p $(peldir)/lib/
 	mv /tmp/node/lib/* $(peldir)/lib/
-	
+
 	mkdir -p $(peldir)/share/doc/
 	mv /tmp/node/share/doc/* $(peldir)/share/doc/
-	
+
 	mkdir -p $(peldir)/share/man/man1/
 	mv /tmp/node/share/man/man1/* $(peldir)/share/man/man1/
-	
+
 	npm config set prefix $(peldir)
 
 
@@ -229,7 +229,7 @@ $(peldir)/elasticsearch/bin/elasticsearch:
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc
 	direnv allow
-	
+
 	mkdir -p $(datadir)/elasticsearch/logs
 	sed -i "s@# cluster.name: my-application@cluster.name: pelias@g" $(peldir)/elasticsearch/config/elasticsearch.yml
 	sed -i "s@# path.data: /path/to/data@path.data: $(datadir)/elasticsearch@g" $(peldir)/elasticsearch/config/elasticsearch.yml
