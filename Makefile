@@ -5,7 +5,8 @@ SHELL := /bin/bash
 peldir := ${HOME}/local/pelias
 node10_latest := $(shell curl -s https://nodejs.org/dist/latest-v10.x/ | grep -P 'linux-x64\.tar\.gz' | sed -n 1p | cut -d '"' -f 2)
 direnv_latest := $(shell curl -s https://api.github.com/repos/direnv/direnv/releases/latest | grep 'browser_download_url' | grep 'linux-amd64' | cut -d '"' -f 4)
-datadir := /disk/agebulk1/medicare.work/doyle-DUA18266/barronk/raw/pelias
+datadir := /disk/agebulk3/medicare.work/doyle-DUA51929/barronk-DUA51929/raw/pelias
+
 
 PELIAS_DEPS := .envrc $(peldir)/bin/node
 PELIAS_DEPS += $(peldir)/elasticsearch/bin/elasticsearch
