@@ -28,16 +28,18 @@ api:
 	git clone git@github.com:pelias/api.git $(peldir)/api
 	cd $(peldir)/api; \
 	git checkout production; \
-	npm install; \
 	echo 'export CC="gcc"' > .envrc; \
 	echo 'export CXX="g++"' >> .envrc; \
 	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
 	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
 	direnv allow; \
+	npm install; \
 	cd node_modules/node-postal; \
 	export CC="gcc"; \
 	export CXX="g++"; \
@@ -65,56 +67,68 @@ schema:
 	git clone git@github.com:pelias/schema.git $(peldir)/schema
 	cd $(peldir)/schema; \
 	git checkout production; \
-	npm install; \
-	cd ..;
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	npm install;
 
 whosonfirst:
 	rm -rf $(peldir)/whosonfirst
 	git clone git@github.com:pelias/whosonfirst.git $(peldir)/whosonfirst
 	cd $(peldir)/whosonfirst; \
 	git checkout production; \
-	npm install; \
-	cd ..;
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	npm install;
 
 openaddresses:
 	rm -rf $(peldir)/openaddresses
 	git clone git@github.com:pelias/openaddresses.git $(peldir)/openaddresses
 	cd $(peldir)/openaddresses; \
 	git checkout production; \
-	npm install; \
-	cd ..;
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	npm install;
 
 openstreetmap:
 	rm -rf $(peldir)/openstreetmap
 	git clone git@github.com:pelias/openstreetmap.git $(peldir)/openstreetmap
 	cd $(peldir)/openstreetmap; \
 	git checkout production; \
-	npm install; \
-	cd ..;
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	npm install;
 
 polylines:
 	rm -rf $(peldir)/polylines
 	git clone git@github.com:pelias/polylines.git $(peldir)/polylines
 	cd $(peldir)/polylines; \
 	git checkout production; \
-	npm install; \
-	cd ..;
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	direnv allow; \
+	npm install;
 
 interpolation: pbf2json
 	rm -rf $(peldir)/interpolation
 	git clone git@github.com:pelias/interpolation.git $(peldir)/interpolation
 	cd $(peldir)/interpolation; \
 	git checkout production; \
-	npm install; \
 	echo 'export CC="gcc"' > .envrc; \
 	echo 'export CXX="g++"' >> .envrc; \
 	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
 	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
 	direnv allow; \
+	npm install; \
 	cd node_modules/node-postal; \
 	export CC="gcc"; \
 	export CXX="g++"; \
