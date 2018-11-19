@@ -58,9 +58,7 @@ api:
 	cd ..; \
 	export CXXFLAGS=-I$$(pwd)/deps/include; \
     export LDFLAGS=-L$$(pwd)/deps/lib; \
-	npm install; \
-	cd ../../; \
-	cd ..;
+	npm install;
 
 schema:
 	rm -rf $(peldir)/schema
@@ -147,10 +145,7 @@ interpolation: pbf2json
 	cd ..; \
 	export CXXFLAGS=-I$$(pwd)/deps/include; \
 	export LDFLAGS=-L$$(pwd)/deps/lib; \
-	npm install; \
-	cd ../../; \
-	cd ..;
-
+	npm install;
 
 pbf2json:
 	rm -rf $(peldir)/pbf2json
