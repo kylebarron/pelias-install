@@ -162,7 +162,7 @@ $(HOME)/pelias.json:
 
 
 .download_whosonfirst:
-	cd whosonfirst; \
+	cd $(peldir)/whosonfirst; \
 	npm run download
 	touch .download_whosonfirst
 
@@ -197,20 +197,25 @@ $(HOME)/pelias.json:
 	# Note: Install plugin before starting elasticsearch
 	$(peldir)/elasticsearch/bin/plugin install analysis-icu
 	# Now elasticsearch must be running
-	cd schema; node scripts/create_index.js && cd .. && touch .create_index
+	cd $(peldir)/schema; node scripts/create_index.js
+	touch .create_index
 
 .import_openstreetmap:
 	# Note, elasticsearch must be running already
-	cd openstreetmap; npm start && cd .. && touch .import_openstreetmap
+	cd $(peldir)/openstreetmap; npm start
+	touch .import_openstreetmap
 
 .import_openaddresses:
-	cd openaddresses; npm start && cd .. && touch .import_openaddresses
+	cd $(peldir)/openaddresses; npm start
+	touch .import_openaddresses
 
 .import_polylines:
-	cd polylines; npm start && cd .. && touch .import_polylines
+	cd $(peldir)/polylines; npm start
+	touch .import_polylines
 
 .import_whosonfirst:
-	cd whosonfirst; npm start && cd .. && touch .import_whosonfirst
+	cd $(peldir)/whosonfirst; npm start
+	touch .import_whosonfirst
 
 .envrc:
 	mkdir -p $(peldir)/bin
