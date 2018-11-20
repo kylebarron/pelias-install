@@ -127,6 +127,23 @@ pbf2json:
 	rm -rf $(peldir)/pbf2json
 	git clone git@github.com:pelias/pbf2json.git $(peldir)/pbf2json
 
+go-whosonfirst-libpostal:
+	rm -rf $(peldir)/go-whosonfirst-libpostal
+	git clone git@github.com:pelias/go-whosonfirst-libpostal.git $(peldir)/go-whosonfirst-libpostal
+	cd $(peldir)/go-whosonfirst-libpostal; \
+	echo 'export CC="gcc"' > .envrc; \
+	echo 'export CXX="g++"' >> .envrc; \
+	echo 'export CXXFLAGS=-I$(peldir)/interpolation/node_modules/node-postal/deps/include' >> .envrc; \
+	echo 'export LDFLAGS=-L$(peldir)/interpolation/node_modules/node-postal/deps/lib' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=$(peldir)/interpolation/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
+	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
+	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
+	echo 'export PKG_CONFIG_PATH=$(peldir)/interpolation/node_modules/node-postal/libpostal:$$PKG_CONFIG_PATH' >> .envrc; \
+	direnv allow; \
+	make bin
 
 $(HOME)/pelias.json:
 	bash ./create_pelias_config.sh -d $(datadir)
