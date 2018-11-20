@@ -249,9 +249,9 @@ $(peldir)/elasticsearch/bin/elasticsearch:
 	wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.6/elasticsearch-2.4.6.tar.gz -P $(HOME)/tmp/
 	mkdir -p $(peldir)/elasticsearch
 	tar -xzvf $(HOME)/tmp/elasticsearch-2.4.6.tar.gz -C $(peldir)/elasticsearch --strip-components 1
-	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc
-	echo 'export ES_HEAP_SIZE=100g' >> .envrc
-	direnv allow
+	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> $(peldir)/.envrc
+	echo 'export ES_HEAP_SIZE=100g' >> $(peldir)/.envrc
+	cd $(peldir) && direnv allow
 
 	mkdir -p $(datadir)/elasticsearch/logs
 	sed -i "s@# cluster.name: my-application@cluster.name: pelias@g" $(peldir)/elasticsearch/config/elasticsearch.yml
