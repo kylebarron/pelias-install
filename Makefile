@@ -39,26 +39,7 @@ api:
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
 	direnv allow; \
-	npm install; \
-	cd node_modules/node-postal; \
-	export CC="gcc"; \
-	export CXX="g++"; \
-	mkdir deps; \
-	git clone git@github.com:openvenues/libpostal.git; \
-	cd libpostal; \
-	./bootstrap.sh; \
-	autoreconf -i; \
-	cat m4/libtool.m4 >> aclocal.m4; \
-	cat m4/ltoptions.m4 >> aclocal.m4; \
-	cat m4/ltversion.m4 >> aclocal.m4; \
-	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
-	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
-	make -j4; \
-	make install; \
-	cd ..; \
-	export CXXFLAGS=-I$$(pwd)/deps/include; \
-    export LDFLAGS=-L$$(pwd)/deps/lib; \
-	npm install;
+	npm install
 
 schema:
 	rm -rf $(peldir)/schema
