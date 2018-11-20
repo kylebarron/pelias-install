@@ -28,13 +28,8 @@ api:
 	git clone git@github.com:pelias/api.git $(peldir)/api
 	cd $(peldir)/api; \
 	git checkout production; \
-	echo 'export CC="gcc"' > .envrc; \
-	echo 'export CXX="g++"' >> .envrc; \
-	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
-	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
-	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
@@ -46,8 +41,8 @@ schema:
 	git clone git@github.com:pelias/schema.git $(peldir)/schema
 	cd $(peldir)/schema; \
 	git checkout production; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	direnv allow; \
 	npm install;
 
@@ -56,8 +51,8 @@ whosonfirst:
 	git clone git@github.com:pelias/whosonfirst.git $(peldir)/whosonfirst
 	cd $(peldir)/whosonfirst; \
 	git checkout production; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	direnv allow; \
 	npm install;
 
@@ -66,8 +61,8 @@ openaddresses:
 	git clone git@github.com:pelias/openaddresses.git $(peldir)/openaddresses
 	cd $(peldir)/openaddresses; \
 	git checkout production; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	direnv allow; \
 	npm install;
 
@@ -76,8 +71,8 @@ openstreetmap:
 	git clone git@github.com:pelias/openstreetmap.git $(peldir)/openstreetmap
 	cd $(peldir)/openstreetmap; \
 	git checkout production; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	direnv allow; \
 	npm install;
 
@@ -86,8 +81,8 @@ polylines:
 	git clone git@github.com:pelias/polylines.git $(peldir)/polylines
 	cd $(peldir)/polylines; \
 	git checkout production; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	direnv allow; \
 	npm install;
 
@@ -101,8 +96,8 @@ interpolation: pbf2json
 	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
 	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' > .envrc; \
-	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
+	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/elasticsearch/bin:$$PATH' >> .envrc; \
 	echo 'export ES_HEAP_SIZE=100g' >> .envrc; \
