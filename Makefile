@@ -257,5 +257,7 @@ $(peldir)/elasticsearch/bin/elasticsearch:
 	sed -i "s@# cluster.name: my-application@cluster.name: pelias@g" $(peldir)/elasticsearch/config/elasticsearch.yml
 	sed -i "s@# path.data: /path/to/data@path.data: $(datadir)/elasticsearch@g" $(peldir)/elasticsearch/config/elasticsearch.yml
 	sed -i "s@# path.logs: /path/to/logs@path.logs: $(datadir)/elasticsearch/logs@g" $(peldir)/elasticsearch/config/elasticsearch.yml
-
-
+	cat 'cluster.routing.allocation.disk.watermark.low: 200g' >> $(peldir)/elasticsearch/config/elasticsearch.yml
+	cat 'cluster.routing.allocation.disk.watermark.high: 150g' >> $(peldir)/elasticsearch/config/elasticsearch.yml
+	cat 'threadpool.bulk.queue_size: 500' >> $(peldir)/elasticsearch/config/elasticsearch.yml
+	
