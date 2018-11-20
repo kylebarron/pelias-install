@@ -93,9 +93,9 @@ interpolation: pbf2json
 	git checkout production; \
 	echo 'export CC="gcc"' > .envrc; \
 	echo 'export CXX="g++"' >> .envrc; \
-	echo 'export CXXFLAGS=-I$$(pwd)/node_modules/node-postal/deps/include' >> .envrc; \
-	echo 'export LDFLAGS=-L$$(pwd)/node_modules/node-postal/deps/lib' >> .envrc; \
-	echo 'export LD_LIBRARY_PATH=$$(pwd)/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
+	echo 'export CXXFLAGS=-I$(peldir)/interpolation/node_modules/node-postal/deps/include' >> .envrc; \
+	echo 'export LDFLAGS=-L$(peldir)/interpolation/node_modules/node-postal/deps/lib' >> .envrc; \
+	echo 'export LD_LIBRARY_PATH=$(peldir)/interpolation/node_modules/node-postal/deps/lib:$$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH' > .envrc; \
 	echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$$LD_LIBRARY_PATH' >> .envrc; \
 	echo 'export PATH=$(peldir)/bin:$$PATH' >> .envrc; \
@@ -115,12 +115,12 @@ interpolation: pbf2json
 	cat m4/ltoptions.m4 >> aclocal.m4; \
 	cat m4/ltversion.m4 >> aclocal.m4; \
 	cat m4/lt\~obsolete.m4 >> aclocal.m4; \
-	./configure --datadir=$$(pwd)/data --prefix=$$(pwd)/../deps --bindir=$$(pwd)/../deps; \
+	./configure --datadir=$(peldir)/interpolation/node_modules/node-postal/libpostal/data --prefix=$(peldir)/interpolation/node_modules/node-postal/libpostal/deps --bindir=$(peldir)/interpolation/node_modules/node-postal/libpostal/deps; \
 	make -j4; \
 	make install; \
 	cd ..; \
-	export CXXFLAGS=-I$$(pwd)/deps/include; \
-	export LDFLAGS=-L$$(pwd)/deps/lib; \
+	export CXXFLAGS=-I$(peldir)/interpolation/node_modules/node-postal/libpostal/deps/include; \
+	export LDFLAGS=-L$(peldir)/interpolation/node_modules/node-postal/libpostal/deps/lib; \
 	npm install;
 
 pbf2json:
