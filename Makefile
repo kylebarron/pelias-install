@@ -176,7 +176,7 @@ $(HOME)/pelias.json:
 
 .download_polylines:
 	mkdir -p $(datadir)/polylines/
-	wget http://pelias-data.nextzen.org.s3.amazonaws.com/poylines/road_network.gz -P $(datadir)/polylines/
+	wget https://s3.amazonaws.com/pelias-data.nextzen.org/polylines/road_network.gz -P $(datadir)/polylines/
 	gunzip $(datadir)/polylines/road_network.gz
 	mv $(datadir)/polylines/road_network $(datadir)/polylines/road_network.polylines
 	touch .download_polylines
